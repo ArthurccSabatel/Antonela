@@ -11,19 +11,34 @@ class album {
     lancamento;
     musicas = []
 
-    constructor(id, nome, genero, lancamento) {
+    constructor(id, nome, cover, genero, lancamento) {
         this.id = id;
         this.nome = nome;
         this.cover = cover;
         this.genero = genero;
-        this.lancamento =lancamento;
+        this.lancamento = lancamento;
     }
 
     addMusica(musica){
         this.musicas.push(musica)
     }
+}
 
+class Musica {
+    album;
+    nome;
+    link;
 
+    constructor(album,nome,link){
+        this.album = album;
+        this.nome = nome;
+        this.link = link
+        album.addMusica(this)
+    }
+
+    play(){
+        // sla como da play.
+    }
 }
 
 
