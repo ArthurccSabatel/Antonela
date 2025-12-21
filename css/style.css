@@ -1,0 +1,103 @@
+body {
+  background: radial-gradient(circle at top, #0d1b2a, #000);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* 🌿 Fundo animado estilo Avatar */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Botão da música */
+.music-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Efeito neon nos botões */
+.btn {
+  transition: 0.3s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 15px currentColor;
+  transform: scale(1.05);
+}
+
+/* Animação suave ao tocar (mobile) */
+button:active {
+  transform: scale(0.97);
+}
+
+/* Glow azul nos textos */
+h1, h2, h3, h4, h5, p {
+  text-shadow: 0 0 8px rgba(0, 180, 255, 0.4);
+}
+
+/* Cartões com energia */
+.card {
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 25px rgba(0, 200, 255, 0.2);
+}
+
+@media (max-width: 576px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  button {
+    font-size: 18px;
+  }
+}
+
+/* 🎧 Capas */
+.cover {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.cover img {
+  width: 100%;
+  display: block;
+}
+
+/* Feedback visual */
+.cover.correct {
+  border-color: #00ff99;
+  box-shadow: 0 0 20px #00ff99;
+}
+
+.cover.wrong {
+  animation: shake 0.3s;
+  border-color: #ff4d4d;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Mobile: imagens confortáveis */
+@media (max-width: 576px) {
+  .cover {
+    max-width: 110px;
+    margin: auto;
+  }
+}
