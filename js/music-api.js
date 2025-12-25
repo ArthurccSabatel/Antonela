@@ -1,4 +1,4 @@
-const urlApi = "https://api.deezer.com/"
+const urlApi = "http://localhost:3000/"
 
 iniciar()
 
@@ -92,10 +92,10 @@ class Musica {
 
 
 async function loadArtist(artist) {
-    response = await fetch(`${urlApi}search/artist?q=${artist}&limit=1&output=json`)
+    response = await fetch(`${urlApi}api/artist/${artist}`)
 
     if(!response.ok)
-        return console.log("not ok")
+        return console.log("not ok 1")
 
     response = await response.json()
     response = response.data[0]; 
@@ -105,10 +105,10 @@ async function loadArtist(artist) {
 }
 
 async function loadAlbums(artistId) {
-    response = await fetch(`${urlApi}/artist/${artistId}/albums`)
+    response = await fetch(`${urlApi}api/albums/${artistId}`)
 
     if(!response.ok)
-        return console.log("not ok")
+        return console.log(response)
 
     response = await response.json()
  
@@ -125,10 +125,10 @@ async function loadAlbums(artistId) {
 
 
 async function loadMusicas(albumId) {
-    response = await fetch(`${urlApi}album/${albumId}`)
+    response = await fetch(`${urlApi}api/musicas/${albumId}`)
 
-     if(!response.ok)
-        return console.log("not ok")
+    if(!response.ok)
+        return console.log(response)
 
     response = await response.json()   
     data = response.tracks.data
