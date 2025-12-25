@@ -11,8 +11,6 @@ async function iniciar() {
 }
 
 
-
-
 class Artista {
     static artistaLista = []
     id;
@@ -38,22 +36,22 @@ class Artista {
 
 
 class Album {
-    static albumLista = []
+    static albumLista = [];
 
     id;
     artista;
     nome;
     cover;
-    genero = [];
     lancamento;
-    musicas = []
+    genero = [];
+    musicas = [];
 
     constructor(id, artista, nome, cover) {
         this.id = id;
         this.artista = artista;
         this.nome = nome;
         this.cover = cover;
-        this.musicas = [];
+
         Album.albumLista.push(this);
         Artista.addAlbum(this.artista, this);
         return this;
@@ -64,7 +62,7 @@ class Album {
     }
     
     completarInfo(generos, cover, lancamento){
-        this.cover = cover
+        this.cover = cover;
         this.genero = generos.map(genero => genero.name);
         this.lancamento = lancamento;
     }
@@ -81,7 +79,7 @@ class Musica {
     nome;
     link;
 
-    constructor(nome,link){
+    constructor(nome, link){
         this.nome = nome;
         this.link = link
     }
@@ -100,7 +98,7 @@ async function loadArtist(artist) {
         return console.log("not ok")
 
     response = await response.json()
-    response = response.data[0]    
+    response = response.data[0]; 
 
     artistanovo = new Artista(response.id, response.name, response.picture)
     return artistanovo;
@@ -118,14 +116,12 @@ async function loadAlbums(artistId) {
     if(!instanciaArtista)
         return console.log(`Artista com id ${instanciaArtista} nao encontrado ao adicionar album`)
 
-    await response.data.forEach(album => {
+    response.data.forEach(album => {
         albumNovo = new Album(album.id, instanciaArtista.id, album.title, album.picture)
         console.log(`>>>> Album Adicionado: ${albumNovo.nome}`)
         loadMusicas(album.id)
     });
 }
-
-
 
 
 async function loadMusicas(albumId) {
@@ -134,9 +130,7 @@ async function loadMusicas(albumId) {
      if(!response.ok)
         return console.log("not ok")
 
-
     response = await response.json()   
-
     data = response.tracks.data
 
     let album = getAlbumById(albumId)
@@ -144,7 +138,8 @@ async function loadMusicas(albumId) {
     if(album)
     {
         if(!album.cover) album.completarInfo(response.genres.data, response.cover, response.release_date)
-        await data.forEach(musica => {
+        
+        data.forEach(musica => {
             novaMusica = new Musica(musica.title, musica.link)
             novaMusica.album = musica.album.title;
             album.addMusica(novaMusica)
@@ -154,7 +149,6 @@ async function loadMusicas(albumId) {
     else 
         console.log("ERRO - Ao localizar album")
 }   
-
 
 
 function getAlbumById(albumId)
