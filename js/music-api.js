@@ -6,8 +6,8 @@ async function iniciar() {
     ta = await loadArtist('Pelados')
     await loadAlbums(ta.id)
 
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    Album.listar()
+    // await new Promise(resolve => setTimeout(resolve, 2000))
+    // Album.listar()
 }
 
 
@@ -118,7 +118,7 @@ async function loadAlbums(artistId) {
 
     response.data.forEach(album => {
         albumNovo = new Album(album.id, instanciaArtista.id, album.title, album.picture)
-        console.log(`>>>> Album Adicionado: ${albumNovo.nome}`)
+        // console.log(`>>>> Album Adicionado: ${albumNovo.nome}`)
         loadMusicas(album.id)
     });
 }
@@ -143,7 +143,7 @@ async function loadMusicas(albumId) {
             novaMusica = new Musica(musica.title, musica.link)
             novaMusica.album = musica.album.title;
             album.addMusica(novaMusica)
-            console.log(`>>>> Musica Adicionada: ${musica.title}`)
+            // console.log(`>>>> Musica Adicionada: ${musica.title}`)
         });
     }
     else 
@@ -157,4 +157,12 @@ function getAlbumById(albumId)
     if(!instAlbum)
         return false;
     return instAlbum;
+}
+
+function getArtistById(artistId)
+{
+    instArtista = Artista.artistaLista.find(a => a.id == artistId)
+    if(!instArtista)
+        return false;
+    return instArtista;
 }
