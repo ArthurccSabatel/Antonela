@@ -8,15 +8,22 @@ async function iniciar() {
 function adivinheAlbum(artist = -1){
     var albuns;
     
-    if(artist == -1){
-        albuns = Artista.artistaLista[Math.floor(Math.random() * Artista.artistaLista.length)].album;
-    }
-    else{
-        albuns = .album;
+    if(artist == -1)
+        albuns = Artista.artistaLista[getRandom(Artista.artistaLista)].album;
+    else   
+        albuns = getArtistById(artist).album;
+
+    let {album, musica} = getRandomMusic(albuns);
+    console.log(album, musica)
+ }
 
 
-    }
+function getRandom(lista){
+    return Math.floor(Math.random() * lista.length)
+}
 
-    console.log(albuns);
-
+function getRandomMusic(albunslist){
+    album = albunslist[getRandom(albunslist)]
+    musica = album.musicas[getRandom(album.musicas)]
+    return {album, musica}
 }
