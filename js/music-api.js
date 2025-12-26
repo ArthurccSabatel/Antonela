@@ -75,18 +75,22 @@ class Album {
 }
 
 class Musica {
+    id;
     album;
     nome;
-    link;
+    preview;
 
-    constructor(nome, link){
+    constructor(id, nome, preview ){
+        this.id = id
         this.nome = nome;
-        this.link = link
+        this.preview = preview
     }
 
-    play(){
-        // sla como da play.
-    }
+
+    play() {
+        const player = document.getElementById("player");
+        player.src = this.preview;
+   }
 }
 
 
@@ -140,7 +144,7 @@ async function loadMusicas(albumId) {
         if(!album.cover) album.completarInfo(response.genres.data, response.cover, response.release_date)
         
         data.forEach(musica => {
-            novaMusica = new Musica(musica.title, musica.link)
+            novaMusica = new Musica(musica.id, musica.title, musica.preview)
             novaMusica.album = musica.album.title;
             album.addMusica(novaMusica)
             // console.log(`>>>> Musica Adicionada: ${musica.title}`)
