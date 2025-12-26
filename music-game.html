@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Deezer Preview</title>
 </head>
 <body>
-    
+<button id="playBtn">Play</button>
+<audio id="player"></audio>
+  <script>
+
+
+    const player = document.getElementById("player");
+
+        document.getElementById("playBtn").onclick = () => {
+            player.play();
+        };
+
+  </script>
+
 </body>
     <script src="js/music-api.js"></script>
     <script src="js/quiz-musica.js"></script>
